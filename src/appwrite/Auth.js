@@ -1,4 +1,4 @@
-import { config } from "../config/config.js"
+import config from "../config/config"
 import { Client, Account, ID } from "appwrite"
 
 export class AuthServices {
@@ -41,17 +41,17 @@ export class AuthServices {
         }
         return null;
     }
-    async logout(){
+    async logout() {
         try {
             await this.account.deleteSessions();
         } catch (error) {
-            console.log("Appwrite service :: logout :: error",error);
+            console.log("Appwrite service :: logout :: error", error);
         }
     }
 }
 
 
 
-const authServices = new AuthServices();
+const authService = new AuthServices();
 
-export default authServices;
+export default authService;
