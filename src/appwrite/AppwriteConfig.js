@@ -1,4 +1,4 @@
-import { config } from "../config/config.js"
+import config from "../config/config.js"
 import { Client, Databases, ID, Storage, Query } from "appwrite"
 
 export class Service {
@@ -120,7 +120,7 @@ export class Service {
             fileID
         )
     }
-    
+
 }
 
 
