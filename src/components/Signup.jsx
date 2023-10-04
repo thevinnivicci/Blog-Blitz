@@ -1,16 +1,15 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import authService from "../appwrite/Auth";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../store/authSlice";
-import { Button, Input, Logo } from "./index";
+import { Button, Input, Logo } from "./index.js";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
-const Signup = () => {
+function Signup() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [error, setError] = useState("");
+  const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
   const create = async (data) => {
@@ -26,6 +25,7 @@ const Signup = () => {
       setError(error.message);
     }
   };
+
   return (
     <div className="flex items-center justify-center">
       <div
@@ -48,19 +48,20 @@ const Signup = () => {
             Sign In
           </Link>
         </p>
-        {error && <p className="text-red-600 mt-8 text-center ">{error}</p>}
+        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+
         <form onSubmit={handleSubmit(create)}>
           <div className="space-y-5">
             <Input
-              label="Full name"
-              placeholder="enter your fullname"
+              label="Full Name: "
+              placeholder="Enter your full name"
               {...register("name", {
                 required: true,
               })}
             />
             <Input
-              label="email"
-              placeholder="enter your email"
+              label="Email: "
+              placeholder="Enter your email"
               type="email"
               {...register("email", {
                 required: true,
@@ -72,10 +73,10 @@ const Signup = () => {
               })}
             />
             <Input
-              label="password"
+              label="Password: "
               type="password"
-              placeholder="enter your password"
-              {...register("passord", {
+              placeholder="Enter your password"
+              {...register("password", {
                 required: true,
               })}
             />
@@ -87,6 +88,6 @@ const Signup = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Signup;

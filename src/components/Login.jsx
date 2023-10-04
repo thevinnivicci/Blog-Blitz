@@ -1,16 +1,15 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login as authLogin } from "../store/authSlice";
-import { Input, Button, Logo } from "./index";
+import { Button, Input, Logo } from "./index";
 import { useDispatch } from "react-redux";
 import authService from "../appwrite/Auth";
 import { useForm } from "react-hook-form";
 
-const Login = () => {
+function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm;
+  const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
 
   const login = async (data) => {
@@ -26,13 +25,14 @@ const Login = () => {
       setError(error.message);
     }
   };
+
   return (
-    <div className="w-full flex items-center justify-center">
+    <div className="flex items-center justify-center w-full">
       <div
         className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
       >
         <div className="mb-2 flex justify-center">
-          <span className="inline-block  w-full max-w-[100px]">
+          <span className="inline-block w-full max-w-[100px]">
             <Logo width="100%" />
           </span>
         </div>
@@ -52,8 +52,8 @@ const Login = () => {
         <form onSubmit={handleSubmit(login)} className="mt-8">
           <div className="space-y-5">
             <Input
-              label="email"
-              placeholder="enter your email"
+              label="Email: "
+              placeholder="Enter your email"
               type="email"
               {...register("email", {
                 required: true,
@@ -65,19 +65,21 @@ const Login = () => {
               })}
             />
             <Input
-              label="password"
+              label="Password: "
               type="password"
-              placeholder="enter your password"
+              placeholder="Enter your password"
               {...register("password", {
                 required: true,
               })}
             />
-            <Button type="submit">Sign in</Button>
+            <Button type="submit" className="w-full">
+              Sign in
+            </Button>
           </div>
         </form>
       </div>
     </div>
   );
-};
+}
 
 export default Login;
