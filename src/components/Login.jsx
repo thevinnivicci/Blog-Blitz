@@ -5,6 +5,7 @@ import { Button, Input, Logo } from "./index";
 import { useDispatch } from "react-redux";
 import authService from "../appwrite/Auth";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 function Login() {
   const navigate = useNavigate();
@@ -20,9 +21,11 @@ function Login() {
         const userData = await authService.getCurrentUser();
         if (userData) dispatch(authLogin(userData));
         navigate("/");
+        toast.success("Login Successfull.");
       }
     } catch (error) {
       setError(error.message);
+      toast.error("Wrong email and password.");
     }
   };
 

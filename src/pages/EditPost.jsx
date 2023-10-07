@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container, PostForm } from "../components";
 import apperiteService from "../appwrite/AppwriteConfig";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 function EditPost() {
   const [post, setPosts] = useState([null]);
   const { slug } = useParams();
@@ -18,7 +18,7 @@ function EditPost() {
     }
   }, [slug, navigate]);
 
-  return posts ? (
+  return post ? (
     <div className="py-8 ">
       <Container>
         <PostForm post={post} />
