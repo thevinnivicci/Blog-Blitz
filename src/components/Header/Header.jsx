@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
+  const githubpage = () => {
+    window.location.href = "https://github.com/thevinnivicci";
+  };
 
   const navItems = [
     {
@@ -37,33 +40,35 @@ function Header() {
   ];
 
   return (
-    <header className="py-3 shadow bg-gray-500">
+    <header className="w-full p-2 shadow lg:p-2">
       <Container>
-        <nav className="flex">
-          <div className="mr-4">
+        <nav className="flex items-center gap-2 flex-col lg:flex-row justify-between">
+          <div className="">
             <Link to="/">
               <Logo width="70px" />
             </Link>
           </div>
-          <ul className="flex ml-auto">
-            {navItems.map((item) =>
-              item.active ? (
-                <li key={item.name}>
-                  <button
-                    onClick={() => navigate(item.slug)}
-                    className="inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full"
-                  >
-                    {item.name}
-                  </button>
+          <div className="lg:relative lg:p-1 md:relative lg:top-0 lg:right-0 w-72 items-center justify-center">
+            <ul className="flex justify-center gap-3">
+              {navItems.map((item) =>
+                item.active ? (
+                  <li key={item.name}>
+                    <button
+                      onClick={() => navigate(item.slug)}
+                      className="btn lg:btn-neutral"
+                    >
+                      {item.name}
+                    </button>
+                  </li>
+                ) : null
+              )}
+              {authStatus && (
+                <li>
+                  <LogoutBtn />
                 </li>
-              ) : null
-            )}
-            {authStatus && (
-              <li>
-                <LogoutBtn />
-              </li>
-            )}
-          </ul>
+              )}
+            </ul>
+          </div>
         </nav>
       </Container>
     </header>

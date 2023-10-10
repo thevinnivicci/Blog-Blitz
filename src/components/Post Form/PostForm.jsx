@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Input, RTE, Select } from "..";
+import { Button, Input, RTE, Select } from "../index";
 import appwriteService from "../../appwrite/AppwriteConfig";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -77,8 +77,11 @@ export default function PostForm({ post }) {
   }, [watch, slugTransform, setValue]);
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-      <div className="w-2/3 px-2">
+    <form
+      onSubmit={handleSubmit(submit)}
+      className="  flex flex-col items-center justify-center flex-wrap"
+    >
+      <div className="w-full lg:w-[80%] px-2">
         <Input
           label="Title :"
           placeholder="Title"
@@ -103,7 +106,7 @@ export default function PostForm({ post }) {
           defaultValue={getValues("content")}
         />
       </div>
-      <div className="w-1/3 px-2">
+      <div className="w-full flex flex-col justify-center items-center px-2">
         <Input
           label="Featured Image :"
           type="file"
@@ -112,7 +115,7 @@ export default function PostForm({ post }) {
           {...register("image", { required: !post })}
         />
         {post && (
-          <div className="w-full mb-4">
+          <div className="w-full lg:w-1/2 mb-4 ">
             <img
               src={appwriteService.getFilePreview(post.featuredImage)}
               alt={post.title}
@@ -123,13 +126,13 @@ export default function PostForm({ post }) {
         <Select
           options={["active", "inactive"]}
           label="Status"
-          className="mb-4"
+          className="mb-4 bg-base-200"
           {...register("status", { required: true })}
         />
         <Button
           type="submit"
-          bgColor={post ? "bg-green-500" : undefined}
-          className="w-full"
+          bgColor={post ? "" : undefined}
+          className="w-full lg:w-1/2 mb-5"
         >
           {post ? "Update" : "Submit"}
         </Button>

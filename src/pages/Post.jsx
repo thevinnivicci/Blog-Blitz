@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import appwriteService from "../appwrite/AppwriteConfig";
-import { Button, Container } from "../components";
+import { Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 
@@ -33,32 +33,33 @@ export default function Post() {
   };
 
   return post ? (
-    <div className="py-8">
+    <div className="py-8 px-5 w-full flex flex-col">
       <Container>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
-          <img
-            src={appwriteService.getFilePreview(post.featuredImage)}
-            alt={post.title}
-            className="rounded-xl"
-          />
-
-          {isAuthor && (
-            <div className="absolute right-6 top-6">
-              <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500" className="mr-3">
-                  Edit
-                </Button>
-              </Link>
-              <Button bgColor="bg-red-500" onClick={deletePost}>
-                Delete
-              </Button>
-            </div>
-          )}
+        <div className="flex p-2 justify-center">
+          <div className="w-full p-2 h-[300px]">
+            <img
+              src={appwriteService.getFilePreview(post.featuredImage)}
+              alt={post.title}
+              className="rounded-lg w-full h-full object-cover"
+            />
+          </div>
         </div>
+        {isAuthor && (
+          <div className="h-20 w-full flex items-center justify-end gap-2">
+            <Link to={`/edit-post/${post.$id}`}>
+              <button className="btn">Edit</button>
+            </Link>
+            <button onClick={deletePost} className="btn">
+              delete
+            </button>
+          </div>
+        )}
         <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">{post.title}</h1>
+          <h1 className="text-2xl text-start font-bold">{post.title}</h1>
         </div>
-        <div className="browser-css">{parse(post.content)}</div>
+        <div className="browser-css text-start text-lg">
+          {parse(post.content)}
+        </div>
       </Container>
     </div>
   ) : null;
