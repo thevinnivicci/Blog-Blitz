@@ -1,6 +1,6 @@
-# React Blognode
+# React BlogBlitz
 
-**React Blognode** is a feature-rich blogging application that empowers users to share their thoughts and stories with the world. Built with React and powered by **Appwrite**, a robust backend-as-a-service platform, React Blognode provides a seamless experience for creating, reading, editing, and deleting blog posts.
+**React BlogBlitz** is a feature-rich blogging application that empowers users to share their thoughts and stories with the world. Built with React and powered by **Appwrite**, a robust backend-as-a-service platform, React BlogBlitz provides a seamless experience for creating, reading, editing, and deleting blog posts.
 
 ## Features
 
@@ -13,7 +13,7 @@
 
 ## Tech Stack
 
-React Blognode leverages a powerful tech stack to deliver a seamless and engaging blogging experience:
+React BlogBlitz leverages a powerful tech stack to deliver a seamless and engaging blogging experience:
 
 - **React:** For building a user-friendly UI.
 - **Tailwind CSS:** For stylish and responsive design.
@@ -36,3 +36,4 @@ Follow these steps to set up the project on your local machine:
 
    ```bash
    git clone https://github.com/thevinnivicci/Mega-Blog-Project.git
+
